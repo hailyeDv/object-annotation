@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+</head>
+
+<script type="text/javascript">
+  function request(e) {
+    const annotation = $(e).siblings("#annotation").val();
+    const text = $(e).siblings("#text").val();
+
+    let url = "/annotation/requestParam";
+    if ($(e).siblings("#method").val() == "GET") {
+      $.ajax({
+        url: url + "?annotation=" + annotation + "&text=" + text,
+        method: "GET",
+        success: function (response) {
+          $(e).siblings("#result").text("Success");
+        }
+      })
+    } else {
+      $.ajax({
+        url: url,
+        // contentType: 'x-www-form-urlencoded',
+        // contentType: 'x-www-form-urlencoded',
+        data: {
+          annotation: annotation,
+          text: text
+        },
+        method: $(e).siblings("#method").val(),
+        success: function (response) {
+          $(e).siblings("#result").text("Success");
+        }
+      })
+    }
+  }
+
+</script>
+<body>
+<div th:object="${response}">
+  <div id="requestParamGetDiv">
+    <span>Method</span>
+    <input type="text" th:id="method" value="GET" readonly>
+    <span>Annotation</span>
+    <input type="text" th:field="*{annotation}">
+    <span>Text</span>
+    <input type="text" th:field="*{text}">
+
+    <span id="result"></span>
+
+    <input type="button" onclick="request(this);" value="전송">
+  </div>
+
+  <div id="requestParamPostDiv">
+    <span>Method</span>
+    <input type="text" th:id="method" value="POST" readonly>
+    <span>Annotation</span>
+    <input type="text" th:field="*{annotation}">
+    <span>Text</span>
+    <input type="text" th:field="*{text}">
+
+    <input type="button" onclick="request(this);" value="전송">
+  </div>
+
+  <div id="requestParamPutDiv">
+    <span>Method</span>
+    <input type="text" th:id="method" value="PUT" readonly>
+    <span>Annotation</span>
+    <input type="text" th:field="*{annotation}">
+    <span>Text</span>
+    <input type="text" th:field="*{text}">
+
+    <input type="button" onclick="request(this);" value="전송">
+  </div>
+</div>
+</body>
+</html>
