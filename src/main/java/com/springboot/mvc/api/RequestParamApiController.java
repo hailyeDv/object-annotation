@@ -5,10 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/annotation")
-public class AnnotationApiController {
+@RequestMapping("/annotation/requestParam")
+public class RequestParamApiController {
 
-    @GetMapping("/requestParam")
+    @GetMapping
     public ResponseEntity<AnnotationResponse> requestParamGet(@RequestParam("annotation") String annotation,
                                                               @RequestParam("text") String text) {
 
@@ -16,7 +16,7 @@ public class AnnotationApiController {
         return ResponseEntity.ok(of);
     }
 
-    @PostMapping("/requestParam")
+    @PostMapping
     public ResponseEntity<AnnotationResponse> requestParamPost(@RequestParam("annotation") String annotation,
                                                                @RequestParam("text") String text) {
 
@@ -24,7 +24,7 @@ public class AnnotationApiController {
         return ResponseEntity.ok(of);
     }
 
-    @PutMapping("/requestParam")
+    @PutMapping
     public ResponseEntity<AnnotationResponse> requestParamPut(@RequestParam("annotation") String annotation,
                                                                @RequestParam("text") String text) {
 

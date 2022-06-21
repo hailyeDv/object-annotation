@@ -21,8 +21,6 @@
     } else {
       $.ajax({
         url: url,
-        // contentType: 'x-www-form-urlencoded',
-        // contentType: 'x-www-form-urlencoded',
         data: {
           annotation: annotation,
           text: text
@@ -38,7 +36,7 @@
 </script>
 <body>
 <div th:object="${response}">
-  <div id="requestParamGetDiv">
+  <div>
     <span>Method</span>
     <input type="text" th:id="method" value="GET" readonly>
     <span>Annotation</span>
@@ -46,12 +44,12 @@
     <span>Text</span>
     <input type="text" th:field="*{text}">
 
-    <span id="result"></span>
+    <span th:id="result"></span>
 
     <input type="button" onclick="request(this);" value="전송">
   </div>
 
-  <div id="requestParamPostDiv">
+  <div>
     <span>Method</span>
     <input type="text" th:id="method" value="POST" readonly>
     <span>Annotation</span>
@@ -59,16 +57,20 @@
     <span>Text</span>
     <input type="text" th:field="*{text}">
 
+    <span th:id="result"></span>
+
     <input type="button" onclick="request(this);" value="전송">
   </div>
 
-  <div id="requestParamPutDiv">
+  <div>
     <span>Method</span>
     <input type="text" th:id="method" value="PUT" readonly>
     <span>Annotation</span>
     <input type="text" th:field="*{annotation}">
     <span>Text</span>
     <input type="text" th:field="*{text}">
+
+    <span th:id="result"></span>
 
     <input type="button" onclick="request(this);" value="전송">
   </div>
