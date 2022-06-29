@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+</head>
+
+<script>
+    $(document.body).ready(function () {
+        $(".send-button").on("click", function () {
+            if ($(this).val() == "get") {
+                $ajax.get({
+                    url: $url.getPath("get?username=" + $("#username").val() + "&userId=" + $("#userId").val()),
+                    success: function (result) {
+                        $("#result").text(result.text);
+                    }
+                })
+            } else if ($(this).val() == "post") {
+                $ajax.post({
+                    url: $url.getPath("post"),
+                    data: {
+                        username: $("#username").val(),
+                        userId: $("#userId").val()
+                    },
+                    success: function (result) {
+                        $("#result").text(result.text);
+                    }
+                })
+            } else if ($(this).val() == "form") {
+                $("form").method = "post";
+                $("form").action = $url.getPath("post");
+                $("form").submit();
+            } else {
+                $ajax.put({
+                    url: $url.getPath("put"),
+                    data: {
+                        username: $("#username").val(),
+                        userId: $("#userId").val()
+                    },
+                    success: function (result) {
+                        $("#result").text(result.text);
+                    }
+                })
+            }
+        })
+    })
+</script>
+
+<body>
+<form th:object="${member}">
+    <span>username</span>
+    <input type="text" th:field="*{username}">
+    <span>userId</span>
+    <input type="text" th:field="*{userId}">
+
+    <span id="result"></span>
+
+    <button type="button" class="send-button" value="get">send GetMapping</button>
+    <button type="button" class="send-button" value="post">send PostMapping</button>
+    <button type="button" class="send-button" value="form">send Form PostMapping</button>
+    <button type="button" class="send-button" value="put">send PutMapping</button>
+</form>
+</body>
+</html>

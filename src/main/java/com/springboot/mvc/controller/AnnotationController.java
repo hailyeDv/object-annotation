@@ -1,6 +1,7 @@
 package com.springboot.mvc.controller;
 
 import com.springboot.common.entity.AnnotationResponse;
+import com.springboot.common.entity.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,5 +28,12 @@ public class AnnotationController {
     public String pathVariable(@ModelAttribute("response") AnnotationResponse response,
                                ModelMap model) {
         return "annotation/pathVariable";
+    }
+
+    @GetMapping("/modelAttributeTest")
+    public String modelAttribute(@ModelAttribute("response") AnnotationResponse response,
+                               @ModelAttribute Member member,
+                               ModelMap model) {
+        return "annotation/modelAttribute";
     }
 }

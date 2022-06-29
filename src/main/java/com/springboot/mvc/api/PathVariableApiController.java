@@ -4,7 +4,7 @@ import com.springboot.common.entity.AnnotationResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/annotation/pathVariable")
+@RequestMapping("/annotation/pathVariableTest")
 @RestController
 public class PathVariableApiController {
 

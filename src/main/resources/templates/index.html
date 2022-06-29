@@ -2,19 +2,14 @@
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
 </head>
-
-<script>
-    function getPage(page) {
-        location.href = "/annotation/" + page;
-    }
-</script>
 
 <body>
 <h3>Annotation select page</h3>
-<button type="button" onclick="getPage('requestParamTest')">@RequestParam</button>
-<button type="button" onclick="getPage('PathVariableTest')">@PathVariable</button>
-<button type="button" onclick="getPage('ModelAttributeTest')">@ModelAttribute</button>
-<button type="button" onclick="getPage('RequestBodyTest')">@RequestBody</button>
+<button type="button" onclick="location.href='/annotation/requestParamTest'">@RequestParam</button>
+<button type="button" onclick="location.href='/annotation/pathVariableTest'">@PathVariable</button>
+<button type="button" onclick="location.href='/annotation/modelAttributeTest'">@ModelAttribute</button>
+<button type="button" onclick="location.href='/annotation/requestBodyTest'">@RequestBody</button>
 </body>
 </html>

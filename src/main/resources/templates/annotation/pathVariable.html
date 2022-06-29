@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
 </head>
 
 <script>
@@ -10,24 +11,24 @@
         const text = $(e).siblings("#text").val();
         const value = $(e).siblings("#value").val();
 
-        let url = "/annotation/pathVariable/" + value;
         if ($(e).siblings("#method").val() == "GET") {
-            $.ajax({
-                url: url + "?text=" + text,
-                method: "GET",
-                success: function (response) {
+            $ajax.get({
+                url: $url.getPath("get"),
+                success: function () {
+                    $(e).siblings("#result").text("Success");
+                }
+            })
+        } else if ($(e).siblings("#method").val() == "POST") {
+            $ajax.post({
+                url: $url.getPath("post"),
+                success: function () {
                     $(e).siblings("#result").text("Success");
                 }
             })
         } else {
-            $.ajax({
-                url: url,
-                data: {
-                    annotation: annotation,
-                    text: text
-                },
-                method: $(e).siblings("#method").val(),
-                success: function (response) {
+            $ajax.put({
+                url: $url.getPath("put"),
+                success: function () {
                     $(e).siblings("#result").text("Success");
                 }
             })
